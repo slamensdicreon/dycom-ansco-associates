@@ -1,0 +1,121 @@
+/* EDIT FONT: keep font loading in CSS so preview-injected head scripts
+ * cannot interfere with hydration of a manually rendered stylesheet link. */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap");
+
+/*
+ * Global design tokens + shared layout utilities.
+ * Values are extracted from the original Ansco "understrap-child" theme CSS
+ * (Bootstrap 4.6 base). Change brand colors here and every page follows.
+ */
+:root {
+  --brand-red: #b01630;        /* primary: buttons, headings accents, icon circles */
+  --brand-navy: #25337a;       /* footer + button hover */
+  --text: #2d2926;             /* nav + body copy */
+  --muted: #6c757d;
+  --border: #dee2e6;
+  --faint: #f4f4f4;
+  --white: #fff;
+  --radius: 0.25rem;
+  --shadow: 0 0 30px 0 rgba(0, 0, 0, 0.15);
+  --font: "Montserrat", sans-serif;
+  --nav-h: 70px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; vertical-align: middle; }
+a { color: var(--brand-red); text-decoration: none; }
+a:hover { text-decoration: underline; }
+p { margin: 0 0 1rem; }
+h1, h2, h3, h4, h5, h6 { margin: 0 0 0.5rem; font-weight: 600; line-height: 1.2; }
+h1 { font-size: 2.5rem; } h2 { font-size: 2rem; } h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; } h5 { font-size: 1.25rem; } h6 { font-size: 1rem; }
+@media (max-width: 991.98px) { h1 { font-size: 2.15rem; } h2 { font-size: 1.85rem; } h3 { font-size: 1.5rem; } }
+@media (max-width: 767.98px) { h5 { font-size: 1.05rem; } }
+ul { margin-top: 0; }
+:focus-visible { outline: 2px solid var(--brand-red); outline-offset: 2px; }
+
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 200; padding: .5rem 1rem; background: var(--brand-red); color: #fff; }
+.skip-link:focus { left: 1rem; top: 1rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+
+main { padding-top: var(--nav-h); }
+@media (max-width: 991.98px) { main { padding-top: 0; } }
+
+/* ---------- Grid (Bootstrap-equivalent) ---------- */
+.container { width: 100%; padding: 0 15px; margin: 0 auto; }
+@media (min-width: 576px) { .container { max-width: 540px; } }
+@media (min-width: 768px) { .container { max-width: 720px; } }
+@media (min-width: 992px) { .container { max-width: 960px; } }
+@media (min-width: 1200px) { .container { max-width: 1140px; } }
+@media (min-width: 1380px) { .container { max-width: 1320px; } }
+.row { display: flex; flex-wrap: wrap; margin: 0 -15px; }
+.row > * { padding: 0 15px; width: 100%; }
+.center-row { justify-content: center; }
+.align-center { align-items: center; }
+@media (min-width: 768px) {
+  .md-3 { width: 25%; } .md-4 { width: 33.333%; } .md-5 { width: 41.666%; } .md-6 { width: 50%; }
+  .md-7 { width: 58.333%; } .md-8 { width: 66.666%; } .md-10 { width: 83.333%; }
+}
+@media (min-width: 992px) {
+  .lg-3 { width: 25%; } .lg-4 { width: 33.333%; } .lg-5 { width: 41.666%; } .lg-6 { width: 50%; }
+  .lg-7 { width: 58.333%; } .lg-8 { width: 66.666%; } .lg-10 { width: 83.333%; }
+}
+
+/* ---------- Sections ---------- */
+.inner { padding-top: 6rem; padding-bottom: 6rem; }
+@media (max-width: 767.98px) { .inner { padding-top: 4rem; padding-bottom: 4rem; } }
+.bg-faint { background-color: var(--faint); }
+.bg-primary { background-color: var(--brand-red); color: #fff; }
+.bg-navy { background-color: var(--brand-navy); color: #fff; }
+.text-center { text-align: center; }
+.primary { color: var(--brand-red); }
+.lead { font-size: 1.25rem; font-weight: 300; }
+.mb-0 { margin-bottom: 0; } .mb-2 { margin-bottom: .5rem; } .mb-3 { margin-bottom: 1rem; } .mb-4 { margin-bottom: 1.5rem; } .mb-5 { margin-bottom: 3rem; }
+.mt-4 { margin-top: 1.5rem; } .mt-5 { margin-top: 3rem; }
+.font-weight-light { font-weight: 300; }
+
+/* Diagonal tinted backgrounds (.diagnol in the original theme) */
+.diagnol { position: relative; overflow: hidden; }
+.diagnol::before { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.diagnol > * { position: relative; }
+.from-left::before { background-image: linear-gradient(to right top, rgba(176,22,48,.04) 0, rgba(176,22,48,.04) 50%, transparent 50%); }
+.from-right::before { background-image: linear-gradient(to left top, rgba(176,22,48,.04) 0, rgba(176,22,48,.04) 50%, transparent 50%); }
+.from-left.diagnol-light::before { background-image: linear-gradient(to right top, rgba(255,255,255,.05) 0, rgba(255,255,255,.05) 50%, transparent 50%); }
+.from-right.diagnol-light::before { background-image: linear-gradient(to left top, rgba(255,255,255,.05) 0, rgba(255,255,255,.05) 50%, transparent 50%); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-block; padding: .75rem 3rem; border: none; border-radius: .5rem;
+  text-transform: uppercase; font-family: var(--font); font-size: .875rem; font-weight: 400;
+  color: #fff; background-color: var(--brand-red); cursor: pointer; text-decoration: none !important;
+  transition: background-color .3s ease-in-out, color .3s ease-in-out;
+}
+.btn:hover, .btn:focus-visible { background-color: var(--brand-navy); color: #fff; }
+.btn:disabled { opacity: .65; cursor: progress; }
+.btn-sm { padding: .5rem 1.5rem; font-size: .8rem; }
+.btn-outline-light { background: transparent; border: 2px solid #fff; }
+.btn-outline-light:hover { background: rgba(255,255,255,.3); }
+
+/* ---------- Images ---------- */
+.img-shadow { box-shadow: var(--shadow); }
+.rc { border-radius: var(--radius); }
+.cover-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.icon-list { list-style: none; padding-left: 0; }
+.icon-list li { position: relative; padding-left: 1.75rem; margin-bottom: .5rem; }
+.icon-list li::before {
+  content: ""; position: absolute; left: 0; top: .35rem; width: .8rem; height: .8rem;
+  border-radius: 50%; background: var(--brand-red); box-shadow: inset 0 0 0 3px #fff, 0 0 0 1px var(--brand-red);
+}
+.prose h3 { margin-top: 2rem; font-size: 1.35rem; }
+.prose li { margin-bottom: .5rem; }

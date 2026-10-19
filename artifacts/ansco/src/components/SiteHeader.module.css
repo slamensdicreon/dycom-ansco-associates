@@ -1,0 +1,52 @@
+.navbar {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
+  background: #fff; box-shadow: 0 0 10px 0 transparent;
+  transition: box-shadow .3s ease-in-out;
+}
+.affix { box-shadow: 0 0 10px 0 rgba(0, 0, 0, .33); }
+.inner {
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  max-width: 1140px; margin: 0 auto; min-height: var(--nav-h); padding: .5rem 15px;
+}
+@media (min-width: 1380px) { .inner { max-width: 1320px; } }
+.brand img { display: block; width: 250px; height: auto; }
+@media (max-width: 1199.98px) { .brand img { width: 170px; } }
+.nav { display: flex; list-style: none; margin: 0; padding: 0; align-items: center; }
+.item { position: relative; }
+.link {
+  display: block; padding: .5rem 1rem; font-family: var(--font); font-size: .95rem; font-weight: 600;
+  text-transform: uppercase; color: var(--text); background: none; border: 0; cursor: pointer;
+  text-decoration: none !important;
+}
+@media (max-width: 1199.98px) { .link { font-size: .8rem; padding: .5rem .6rem; } }
+.link:hover, .active { color: var(--brand-red); }
+.toggle::after {
+  content: ""; display: inline-block; margin-left: .255em; vertical-align: .2em;
+  border-top: .3em solid; border-right: .3em solid transparent; border-left: .3em solid transparent;
+}
+.menu {
+  display: none; position: absolute; top: 100%; left: 0; min-width: 10rem; margin: 0; padding: .5rem 0;
+  list-style: none; background: #fff; box-shadow: 0 6px 12px rgba(0, 0, 0, .12); z-index: 10;
+}
+.open .menu { display: block; }
+.menuItem {
+  display: block; padding: .35rem 1.5rem; font-size: .875rem; color: var(--text); white-space: nowrap;
+  text-decoration: none !important;
+}
+.menuItem:hover, .menuItem:focus { background: #f8f9fa; color: var(--brand-red); }
+.menuActive { color: var(--brand-red); }
+
+.toggler { display: none; background: none; border: 0; padding: .5rem; cursor: pointer; }
+.toggler span { display: block; width: 24px; height: 2px; margin: 5px 0; background: var(--text); }
+
+@media (max-width: 991.98px) {
+  .navbar { position: sticky; }
+  .inner { padding: .15rem 1rem; min-height: 56px; }
+  .brand img { width: 150px; }
+  .toggler { display: block; }
+  .nav { display: none; width: 100%; flex-direction: column; align-items: stretch; padding-bottom: .5rem; }
+  .navOpen { display: flex; }
+  .item:not(:last-child) > .link { border-bottom: 1px solid var(--border); }
+  .link { width: 100%; text-align: left; font-size: .875rem; padding: .6rem 0; }
+  .menu { position: static; box-shadow: none; padding: 0 0 .5rem 1rem; }
+}

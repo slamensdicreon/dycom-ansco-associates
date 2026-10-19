@@ -1,0 +1,24 @@
+/* Horizontal job rows (nectar-hor-list-item, 3 columns 60/20/20, red flip-in hover). */
+.list { list-style: none; padding: 0; margin: 0; border-top: 1px solid rgba(0,0,0,.12); }
+.row {
+  position: relative; display: grid; grid-template-columns: 60% 20% 20%; align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,.12); overflow: hidden;
+}
+.row::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; background: var(--brand-red); opacity: 0;
+  transform: perspective(1000px) rotateX(90deg); transform-origin: 50% 100%;
+  transition: transform .4s cubic-bezier(.2,0,.15,1), opacity .4s cubic-bezier(.2,0,.15,1);
+}
+.row:hover::before, .row:focus-within::before { opacity: 1; transform: perspective(1000px) rotateX(0); }
+.row > * { position: relative; z-index: 1; padding: 15px; margin: 0; }
+.title { font-size: 1.15rem; }
+.title a { color: var(--text); }
+.loc { font-size: .95rem; }
+.apply { text-align: right; font-weight: 600; text-transform: uppercase; font-size: .85rem; color: var(--brand-red); }
+.row:hover .title a, .row:hover .loc, .row:hover .apply,
+.row:focus-within .title a, .row:focus-within .loc, .row:focus-within .apply { color: #fff; }
+@media (max-width: 600px) {
+  .row { grid-template-columns: 1fr; }
+  .row > * { padding: 6px 0; }
+  .apply { text-align: left; padding-bottom: 15px !important; }
+}

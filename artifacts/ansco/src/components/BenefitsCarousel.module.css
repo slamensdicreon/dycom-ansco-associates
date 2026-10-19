@@ -1,0 +1,28 @@
+.carousel { position: relative; width: 100%; padding: 0 3.5rem 2.5rem; }
+.viewport { overflow: hidden; }
+.track { display: flex; transition: transform .5s cubic-bezier(.2,0,.15,1); }
+@media (prefers-reduced-motion: reduce) { .track { transition: none; } }
+.slide { flex: 0 0 100%; text-align: center; padding: 1rem; }
+.icon {
+  width: 100px; height: 100px; margin: 0 auto 1.25rem;
+  filter: invert(19%) sepia(59%) saturate(4282%) hue-rotate(335deg) brightness(83%) contrast(98%);
+}
+.title { font-size: 1.35rem; text-transform: capitalize; color: var(--brand-red); }
+.slide p { max-width: 560px; margin: 0 auto; }
+.arrow {
+  position: absolute; top: calc(50% - 1.25rem); width: 44px; height: 44px; border: 0; border-radius: 50%;
+  background: var(--brand-red); cursor: pointer; transform: translateY(-50%); transition: background .3s;
+}
+.arrow::before {
+  content: ""; position: absolute; top: 50%; left: 50%; width: 10px; height: 10px;
+  border-top: 2px solid #fff; border-right: 2px solid #fff;
+}
+.prev { left: 0; }
+.prev::before { transform: translate(-30%, -50%) rotate(-135deg); }
+.next { right: 0; }
+.next::before { transform: translate(-70%, -50%) rotate(45deg); }
+.arrow:hover, .arrow:focus-visible { background: var(--brand-navy); }
+.dots { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; gap: .5rem; }
+.dot { width: 12px; height: 12px; padding: 0; border: 2px solid var(--brand-red); border-radius: 50%; background: transparent; cursor: pointer; }
+.dotActive { background: var(--brand-red); }
+@media (max-width: 575.98px) { .carousel { padding: 0 2.75rem 2.5rem; } .arrow { width: 36px; height: 36px; } }

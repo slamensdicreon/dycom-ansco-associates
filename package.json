@@ -1,0 +1,24 @@
+{
+  "name": "dycom-ansco-associates",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.26.1",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @workspace/ansco dev",
+    "dev:api": "pnpm --filter @workspace/api-server dev",
+    "build": "pnpm typecheck:libs && pnpm --filter @workspace/ansco build && pnpm --filter @workspace/api-server build",
+    "start": "pnpm --filter @workspace/ansco serve",
+    "start:api": "pnpm --filter @workspace/api-server start",
+    "typecheck:libs": "tsc --build",
+    "typecheck": "pnpm typecheck:libs && pnpm --filter './artifacts/**' --if-present typecheck",
+    "db:push": "pnpm --filter @workspace/db push",
+    "codegen": "pnpm --filter @workspace/api-spec codegen"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.6",
+    "typescript": "~5.9.3"
+  }
+}

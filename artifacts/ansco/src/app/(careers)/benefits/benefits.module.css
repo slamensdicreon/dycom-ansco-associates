@@ -1,0 +1,14 @@
+/* 40/60 split: photo column with category title, benefits carousel (BenefitsCarousel). */
+.group { display: flex; min-height: 520px; }
+.media {
+  position: relative; flex: 0 0 40%; background-size: cover; background-position: center;
+  display: flex; align-items: flex-end; padding: 2.5rem;
+}
+.media::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.6), transparent 60%); }
+.groupTitle { position: relative; color: #fff; font-size: 3rem; font-weight: 700; margin: 0; text-transform: capitalize; }
+.items { flex: 1; min-width: 0; padding: 3rem; display: flex; align-items: center; background: var(--faint); }
+@media (max-width: 991.98px) {
+  .group { flex-direction: column; }
+  .media { order: 0 !important; min-height: 260px; }
+  .items { padding: 2rem 1.25rem; }
+}
