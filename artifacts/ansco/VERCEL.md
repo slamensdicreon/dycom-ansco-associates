@@ -6,9 +6,12 @@ Import `slamensdicreon/dycom-ansco-associates` and select branch `main`.
 
 | Setting | Value |
 | --- | --- |
-| Framework Preset | Next.js |
-| Root Directory | `artifacts/ansco` |
-| Include source files outside the Root Directory | Enabled |
+| Project Root Directory | Repository root (blank or `.`) |
+| Service | `ansco` |
+| Service Root | `artifacts/ansco` |
+| Service Framework | Next.js |
+| Public routing | All paths, including `/api/*`, to `ansco` |
+| Service bindings | None |
 | Node.js | 22.x |
 | Install Command | `pnpm install --frozen-lockfile` |
 | Build Command | `pnpm run build` |
@@ -18,9 +21,15 @@ Keep the pnpm lockfile/workspace file at the repository root. Vercel installs
 workspace dependencies there. The application imports shared validation from
 `lib/api-zod`; Next.js transpiles and traces that package into server functions.
 
-Do not select the repository root as the Vercel Root Directory: the Next.js
-application lives in `artifacts/ansco`. Do not run the old combined Express build,
-start a persistent server, or configure a static export.
+The repository-root `vercel.json` is the single deployment configuration.
+It declares one public Next.js service; the optional Express package is not
+deployed. No internal services or binding variables are needed.
+
+If this project was previously imported, change its Root Directory from
+`artifacts/ansco` to the repository root. Clear old project-level install,
+build and output overrides; the service configuration supplies the commands.
+Then redeploy the latest `main` commit. Do not start a persistent server or
+configure a static export.
 
 ## Environment variables
 

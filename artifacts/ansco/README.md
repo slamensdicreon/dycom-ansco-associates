@@ -3,7 +3,7 @@
 One-for-one rebuild of https://anscollc.com on **Next.js App Router + TypeScript** (server components, small client islands).
 
 ## Scripts
-- Vercel deployment: see [VERCEL.md](VERCEL.md). Use Root Directory `artifacts/ansco`.
+- Vercel deployment: see [VERCEL.md](VERCEL.md). Use the repository root as the project Root Directory.
 - `pnpm --filter @workspace/ansco dev` – dev server on `0.0.0.0:$PORT` (default 3000)
 - `pnpm --filter @workspace/ansco build` – `next build`
 - `pnpm --filter @workspace/ansco serve` – production server on `0.0.0.0:$PORT`

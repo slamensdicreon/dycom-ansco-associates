@@ -52,15 +52,18 @@ pnpm start
 
 ## Deploy to Vercel
 
-- Framework: **Next.js**
-- Root Directory: **artifacts/ansco**
-- Include source files outside the Root Directory: **enabled**
+- Project Root Directory: **repository root** (leave blank or use `.`)
+- Service: **ansco**, Next.js, rooted at **artifacts/ansco**
+- Public routing: **all paths**, including `/api/*`, go to `ansco`
+- Service bindings: **none**
 - Node.js: **22.x**
 - Install command: `pnpm install --frozen-lockfile`
 - Build command: `pnpm run build`
 - Output directory: leave the Next.js default (do not set `out` or `dist`)
 
-The app's `vercel.json` declares the framework and commands. No separate
+The repository-root `vercel.json` declares the service, routing and commands.
+Remove old project-level build/install/output overrides and let this file configure the service.
+Do not set the project Root Directory to `artifacts/ansco`. No separate
 Express deployment or `API_ORIGIN` is needed. See
 [the Vercel setup guide](artifacts/ansco/VERCEL.md) for environment variables,
 database setup and verification. Builds never run database migrations.

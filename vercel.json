@@ -1,0 +1,17 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "ansco": {
+      "root": "artifacts/ansco",
+      "framework": "nextjs",
+      "installCommand": "pnpm install --frozen-lockfile",
+      "buildCommand": "pnpm run build"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": { "service": "ansco" }
+    }
+  ]
+}
