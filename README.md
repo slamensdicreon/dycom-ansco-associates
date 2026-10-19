@@ -9,7 +9,7 @@ memory, credentials, database records, dependencies and build output.
 
 ## Requirements
 
-- Node.js 22 or later and pnpm 10
+- Node.js 22.x and pnpm 10.26.1
 - A PostgreSQL database for form submissions
 
 ## Install and run
@@ -19,8 +19,9 @@ pnpm install --frozen-lockfile
 ```
 
 Set `DATABASE_URL` in your shell or your host's secret manager. Do not commit it.
-These commands expect variables in the process environment; the API does not
-automatically load a root `.env` file.
+For Next.js local development, you may set it in
+`artifacts/ansco/.env.local` (ignored by Git). Schema commands expect it in
+the process environment. Never commit real credentials.
 
 Apply the included schema to an empty development database:
 
@@ -31,39 +32,44 @@ pnpm db:push
 Review database schema changes before applying them to an existing database.
 Database records from Replit are deliberately not exported.
 
-Run two terminals (POSIX shell syntax):
+Run the Next.js application:
 
 ```sh
-# Terminal 1 — API, with DATABASE_URL already set
-PORT=8080 pnpm dev:api
-
-# Terminal 2 — Next.js; API_ORIGIN enables the /api proxy
-API_ORIGIN=http://127.0.0.1:8080 pnpm dev
+pnpm dev
 ```
 
-Open http://localhost:3000. The marketing pages also run without the API, but
-both inquiry forms need the API and database.
+Open http://localhost:3000. Native Next.js routes serve both forms at
+`/api/contact/` and `/api/subcontractor-request/`. Marketing pages build and
+run without a database; submissions require a configured database/schema.
 
 ## Checks and production
 
 ```sh
 pnpm typecheck
-API_ORIGIN=http://127.0.0.1:8080 pnpm build
-PORT=8080 pnpm start:api
-# In another terminal:
-PORT=3000 pnpm start
+pnpm build
+pnpm start
 ```
 
-Set `API_ORIGIN` at build time to the API's internal reachable URL; Next.js
-rewrites are built into the production routes. Alternatively route `/api`
-directly to the API with your reverse proxy. Supply `DATABASE_URL` to the API
-process and `SITE_URL` to Next.js at build time for the intended canonical URL.
-Use your hosting provider's HTTPS and process-management facilities.
+## Deploy to Vercel
+
+- Framework: **Next.js**
+- Root Directory: **artifacts/ansco**
+- Include source files outside the Root Directory: **enabled**
+- Node.js: **22.x**
+- Install command: `pnpm install --frozen-lockfile`
+- Build command: `pnpm run build`
+- Output directory: leave the Next.js default (do not set `out` or `dist`)
+
+The app's `vercel.json` declares the framework and commands. No separate
+Express deployment or `API_ORIGIN` is needed. See
+[the Vercel setup guide](artifacts/ansco/VERCEL.md) for environment variables,
+database setup and verification. Builds never run database migrations.
 
 ## Contents
 
 - `artifacts/ansco`: Next.js pages, components, typed content and `public/assets`
-- `artifacts/api-server`: inquiry submission API and health endpoint
+- `artifacts/api-server`: optional legacy Express server used in Replit;
+  not required or built by the Vercel Next.js deployment
 - `lib/db`: PostgreSQL schema and Drizzle configuration
 - `lib/api-spec`: OpenAPI contract and code generation
 - `lib/api-zod`: generated server validation

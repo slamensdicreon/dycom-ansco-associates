@@ -3,6 +3,7 @@
 One-for-one rebuild of https://anscollc.com on **Next.js App Router + TypeScript** (server components, small client islands).
 
 ## Scripts
+- Vercel deployment: see [VERCEL.md](VERCEL.md). Use Root Directory `artifacts/ansco`.
 - `pnpm --filter @workspace/ansco dev` – dev server on `0.0.0.0:$PORT` (default 3000)
 - `pnpm --filter @workspace/ansco build` – `next build`
 - `pnpm --filter @workspace/ansco serve` – production server on `0.0.0.0:$PORT`
@@ -35,9 +36,9 @@ src/lib/metadata.ts             per-page title/description/OG helper
 ```
 
 ## Integrations
-- Contact form posts JSON to `POST /api/contact` (workspace API server). Submissions are stored; no email is sent until delivery is configured.
+- Contact form posts JSON to `POST /api/contact`. Vercel uses a native Next.js route; the Replit preview retains its existing workspace API routing. Submissions are stored; no email is sent until delivery is configured.
 - Job search, "Apply Now", "Connect with us!" go to the live Dycom SAP SuccessFactors career site.
-- Subcontractor request form posts JSON to `POST /api/subcontractor-request` (workspace API server). Submissions are stored; no email is sent.
+- Subcontractor request form posts JSON to `POST /api/subcontractor-request`, also handled natively by Next.js on Vercel. Submissions are stored; no email is sent.
 - Locations: filterable list synced to a Google Maps address embed of the selected office (the original plugin's coordinates are not in the page source, so none are used).
 - Vimeo (home background, careers, quality, FAQ) and Google Maps (contact) use the original embeds.
 - Not copied: WordPress scripts, Termly consent blocker, analytics/tracking, reCAPTCHA.
