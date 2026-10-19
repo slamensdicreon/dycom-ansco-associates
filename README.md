@@ -4,8 +4,8 @@ Ansco's Next.js App Router + TypeScript website, local image assets, and the
 API/database schema supporting contact and subcontractor inquiries.
 
 This repository contains only the Ansco application and its supporting packages.
-It excludes the design sandbox, research captures, Replit metadata, assistant
-memory, credentials, database records, dependencies and build output.
+Credentials, database records, installed dependencies and build output are not
+included.
 
 ## Requirements
 
@@ -30,7 +30,7 @@ pnpm db:push
 ```
 
 Review database schema changes before applying them to an existing database.
-Database records from Replit are deliberately not exported.
+Provision the database separately; this repository contains schema, not records.
 
 Run the Next.js application:
 
@@ -68,7 +68,7 @@ database setup and verification. Builds never run database migrations.
 ## Contents
 
 - `artifacts/ansco`: Next.js pages, components, typed content and `public/assets`
-- `artifacts/api-server`: optional legacy Express server used in Replit;
+- `artifacts/api-server`: optional standalone Express server;
   not required or built by the Vercel Next.js deployment
 - `lib/db`: PostgreSQL schema and Drizzle configuration
 - `lib/api-spec`: OpenAPI contract and code generation

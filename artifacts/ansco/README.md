@@ -36,7 +36,7 @@ src/lib/metadata.ts             per-page title/description/OG helper
 ```
 
 ## Integrations
-- Contact form posts JSON to `POST /api/contact`. Vercel uses a native Next.js route; the Replit preview retains its existing workspace API routing. Submissions are stored; no email is sent until delivery is configured.
+- Contact form posts JSON to `POST /api/contact`, handled by a native Next.js route. Submissions are stored; no email is sent until delivery is configured.
 - Job search, "Apply Now", "Connect with us!" go to the live Dycom SAP SuccessFactors career site.
 - Subcontractor request form posts JSON to `POST /api/subcontractor-request`, also handled natively by Next.js on Vercel. Submissions are stored; no email is sent.
 - Locations: filterable list synced to a Google Maps address embed of the selected office (the original plugin's coordinates are not in the page source, so none are used).

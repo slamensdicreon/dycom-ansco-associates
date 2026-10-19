@@ -46,7 +46,7 @@ Next.js Node.js functions in this same Vercel project.
 
 ## Database setup
 
-No data was exported from Replit. Use the existing schema in `lib/db` against
+No database records are included. Use the existing schema in `lib/db` against
 your intended PostgreSQL database. With `DATABASE_URL` securely set in your
 shell, run from the repository root:
 
@@ -77,5 +77,5 @@ best-effort, not a distributed anti-abuse system. Configure Vercel Firewall or
 equivalent distributed protection before accepting public traffic. Review
 consent/privacy requirements and configure email delivery separately.
 
-The legacy Express package remains for the existing Replit preview only.
+The optional Express package supports standalone API hosting.
 Vercel does not use its process, port, or build output.
